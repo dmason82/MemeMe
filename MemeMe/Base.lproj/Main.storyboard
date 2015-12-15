@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,106 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UhN-7o-oTj">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <barButtonItem systemItem="camera" id="inM-jr-QW3">
+                                        <connections>
+                                            <action selector="pickImageFromCamera:" destination="BYZ-38-t0r" id="Fym-lA-6nP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0hU-Lt-Vlt"/>
+                                    <barButtonItem title="Album" id="1MM-Ua-Q0C">
+                                        <connections>
+                                            <action selector="pickImageFromLibrary:" destination="BYZ-38-t0r" id="mI0-ML-C5V"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jLj-NL-E2e"/>
+                                    <barButtonItem systemItem="action" id="dHp-IF-cFi">
+                                        <connections>
+                                            <action selector="share:" destination="BYZ-38-t0r" id="8O1-N0-vTl"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="biU-Rg-Dy9">
+                                <rect key="frame" x="20" y="34" width="560" height="522"/>
+                                <animations/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="v8P-fn-N7a">
+                                <rect key="frame" x="95" y="40" width="410" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="baZ-jj-5sb"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="TOP">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="Impact"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="N6d-ML-vXc">
+                                <rect key="frame" x="95" y="506" width="410" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ZVc-XI-4qy"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="BOTTOM">
+                                        <attributes>
+                                            <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="12" name="Impact"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="e7i-cf-t4z"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="biU-Rg-Dy9" firstAttribute="bottom" secondItem="UhN-7o-oTj" secondAttribute="top" id="1Q5-fN-sdI"/>
+                            <constraint firstAttribute="trailing" secondItem="UhN-7o-oTj" secondAttribute="trailing" id="BBV-W6-ufq"/>
+                            <constraint firstItem="UhN-7o-oTj" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="EIM-Hj-LEx"/>
+                            <constraint firstItem="biU-Rg-Dy9" firstAttribute="centerX" secondItem="UhN-7o-oTj" secondAttribute="centerX" id="EuZ-0T-64Z"/>
+                            <constraint firstItem="UhN-7o-oTj" firstAttribute="top" secondItem="N6d-ML-vXc" secondAttribute="bottom" constant="20" id="Gab-hj-iJg"/>
+                            <constraint firstItem="N6d-ML-vXc" firstAttribute="trailing" secondItem="v8P-fn-N7a" secondAttribute="trailing" id="VYk-Q2-uS0"/>
+                            <constraint firstItem="N6d-ML-vXc" firstAttribute="centerX" secondItem="biU-Rg-Dy9" secondAttribute="centerX" id="XDf-5c-hFE"/>
+                            <constraint firstItem="biU-Rg-Dy9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="eFJ-Tx-BSn"/>
+                            <constraint firstItem="v8P-fn-N7a" firstAttribute="centerX" secondItem="biU-Rg-Dy9" secondAttribute="centerX" id="hXq-fl-oro"/>
+                            <constraint firstItem="UhN-7o-oTj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lpw-cA-0Nb"/>
+                            <constraint firstItem="v8P-fn-N7a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="plJ-GH-50Z"/>
+                            <constraint firstItem="biU-Rg-Dy9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="14" id="sNn-ni-pLm"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VYk-Q2-uS0"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="bottomTextfield" destination="N6d-ML-vXc" id="rp3-Im-8lW"/>
+                        <outlet property="cameraButton" destination="inM-jr-QW3" id="4wv-VX-SaX"/>
+                        <outlet property="imageView" destination="biU-Rg-Dy9" id="vRj-CQ-VVZ"/>
+                        <outlet property="shareButton" destination="dHp-IF-cFi" id="2rn-uM-cbQ"/>
+                        <outlet property="topTextfield" destination="v8P-fn-N7a" id="aoB-1O-T5b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="305" y="429"/>
         </scene>
     </scenes>
 </document>
