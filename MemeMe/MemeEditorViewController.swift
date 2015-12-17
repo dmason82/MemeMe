@@ -32,15 +32,17 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         self.subscribeToKeyboardNotifications()
         if(imageView.image == nil){
-            self.shareButton.enabled = false
+            shareButton.enabled = false
         }
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.unsubscribeToKeyboardNotifications()
+        super.viewWillDisappear(animated)
+        unsubscribeToKeyboardNotifications()
     }
     
     func subscribeToKeyboardNotifications() {
@@ -49,15 +51,17 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
     }
     
     func shiftViewForKeyboard(notification: NSNotification){
-        switch notification.name{
-        case UIKeyboardWillShowNotification:
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
-            break
-        case UIKeyboardWillHideNotification:
-            self.view.frame.origin.y += getKeyboardHeight(notification)
-            break
-        default:
-            break
+        if(bottomTextfield.isFirstResponder()){
+            switch notification.name{
+            case UIKeyboardWillShowNotification:
+                self.view.frame.origin.y -= getKeyboardHeight(notification)
+                break
+            case UIKeyboardWillHideNotification:
+                self.view.frame.origin.y = 0
+                break
+            default:
+                break
+            }
         }
     }
     
@@ -73,31 +77,34 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
     }
     @IBAction func pickImageFromLibrary(sender: UIBarButtonItem) {
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: {()->Void in
+        presentViewController(imagePicker, animated: true, completion: {()->Void in
         self.enableSharing()})
     }
     
     @IBAction func pickImageFromCamera(sender:UIBarButtonItem){
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(imagePicker, animated: true, completion: {()->Void in
+        presentViewController(imagePicker, animated: true, completion: {()->Void in
             self.enableSharing()})
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         imageView.image = image
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func share(sender: UIBarButtonItem) {
-        self.memedImage = generateMemedImage()
+        memedImage = generateMemedImage()
         let activityView = UIActivityViewController(activityItems: [self.memedImage], applicationActivities: nil)
-        self .presentViewController(activityView, animated: true , completion: {() ->Void in
+        activityView.completionWithItemsHandler = {(activityType:String?, completed:Bool,  returnedItems :[AnyObject]?, error:NSError?) ->Void in
+            if(completed){
             self.save()
-        })
+            }
+        }
+        presentViewController(activityView, animated: true , completion: nil)
     }
     func save(){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -110,24 +117,24 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
     func generateMemedImage() -> UIImage {
         
         //Hide toolbar and navbar
-        self.navigationController?.navigationBarHidden = true
+        navigationController?.navigationBarHidden = true
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame,
+        view.drawViewHierarchyInRect(self.view.frame,
             afterScreenUpdates: true)
         let memedImage : UIImage =
         UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         //Show toolbar and navbar
-        self.navigationController?.navigationBarHidden = false
+        navigationController?.navigationBarHidden = false
         
         return memedImage
     }
     
     func enableSharing(){
-        self.shareButton.enabled = true
+        shareButton.enabled = true
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
