@@ -41,7 +41,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="biU-Rg-Dy9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="biU-Rg-Dy9">
                                 <rect key="frame" x="20" y="7" width="560" height="534"/>
                                 <animations/>
                             </imageView>
@@ -88,6 +88,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="biU-Rg-Dy9" firstAttribute="bottom" secondItem="UhN-7o-oTj" secondAttribute="top" id="1Q5-fN-sdI"/>
+                            <constraint firstItem="biU-Rg-Dy9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="7" id="40h-ZQ-k5Y"/>
                             <constraint firstAttribute="trailing" secondItem="UhN-7o-oTj" secondAttribute="trailing" id="BBV-W6-ufq"/>
                             <constraint firstItem="N6d-ML-vXc" firstAttribute="bottom" secondItem="biU-Rg-Dy9" secondAttribute="bottom" constant="-30" id="DFx-sc-vXb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="v8P-fn-N7a" secondAttribute="trailing" constant="14" id="DPo-Pa-Pfh"/>
@@ -95,8 +96,10 @@
                             <constraint firstItem="biU-Rg-Dy9" firstAttribute="centerX" secondItem="UhN-7o-oTj" secondAttribute="centerX" id="EuZ-0T-64Z"/>
                             <constraint firstItem="N6d-ML-vXc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="GG6-8f-e8d"/>
                             <constraint firstItem="UhN-7o-oTj" firstAttribute="top" secondItem="N6d-ML-vXc" secondAttribute="bottom" constant="20" id="Gab-hj-iJg"/>
+                            <constraint firstItem="UhN-7o-oTj" firstAttribute="top" secondItem="biU-Rg-Dy9" secondAttribute="bottom" constant="15" id="GsT-fS-fGc"/>
                             <constraint firstItem="N6d-ML-vXc" firstAttribute="leading" secondItem="biU-Rg-Dy9" secondAttribute="leading" id="HVa-x1-xDW"/>
                             <constraint firstItem="N6d-ML-vXc" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="NCx-Xe-SCB"/>
+                            <constraint firstItem="biU-Rg-Dy9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NcH-Oe-HXf"/>
                             <constraint firstItem="v8P-fn-N7a" firstAttribute="trailing" secondItem="biU-Rg-Dy9" secondAttribute="trailing" id="PqM-7K-H38"/>
                             <constraint firstItem="N6d-ML-vXc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="17" id="RIZ-tD-ejn"/>
                             <constraint firstItem="v8P-fn-N7a" firstAttribute="centerX" secondItem="biU-Rg-Dy9" secondAttribute="centerX" id="Ukz-5j-Dte"/>
@@ -106,6 +109,7 @@
                             <constraint firstItem="N6d-ML-vXc" firstAttribute="centerX" secondItem="biU-Rg-Dy9" secondAttribute="centerX" id="XDf-5c-hFE"/>
                             <constraint firstItem="N6d-ML-vXc" firstAttribute="centerX" secondItem="biU-Rg-Dy9" secondAttribute="centerX" id="ab7-St-9Wa"/>
                             <constraint firstItem="N6d-ML-vXc" firstAttribute="top" secondItem="biU-Rg-Dy9" secondAttribute="bottom" constant="-50" id="bNM-ni-ayL"/>
+                            <constraint firstItem="biU-Rg-Dy9" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="bbg-6x-ZGE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="N6d-ML-vXc" secondAttribute="trailing" constant="17" id="dnd-EI-Rdi"/>
                             <constraint firstItem="v8P-fn-N7a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="14" id="dzF-Rh-xcY"/>
                             <constraint firstItem="biU-Rg-Dy9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="eFJ-Tx-BSn"/>
